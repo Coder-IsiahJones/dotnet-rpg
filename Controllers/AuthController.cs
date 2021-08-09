@@ -19,7 +19,7 @@ namespace dotnet_rpg.Controllers
         }
 
         [HttpPost]
-        [Route("Reigister")]
+        [Route("Register")]
         public async Task<ActionResult<ServiceResponse<int>>> Register(UserRegisterDto request)
         {
             var response = await _authRepo.Register(
