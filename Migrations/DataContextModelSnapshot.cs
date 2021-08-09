@@ -75,6 +75,30 @@ namespace dotnet_rpg.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("dotnet_rpg.Models.Weapon", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Damage")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CharacterId")
+                        .IsUnique();
+
+                    b.ToTable("Weapons");
+                });
+
             modelBuilder.Entity("dotnet_rpg.Models.Character", b =>
                 {
                     b.HasOne("dotnet_rpg.Models.User", "User")
@@ -82,6 +106,22 @@ namespace dotnet_rpg.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("dotnet_rpg.Models.Weapon", b =>
+                {
+                    b.HasOne("dotnet_rpg.Models.Character", "Character")
+                        .WithOne("Weapon")
+                        .HasForeignKey("dotnet_rpg.Models.Weapon", "CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+                });
+
+            modelBuilder.Entity("dotnet_rpg.Models.Character", b =>
+                {
+                    b.Navigation("Weapon");
                 });
 
             modelBuilder.Entity("dotnet_rpg.Models.User", b =>
