@@ -3,7 +3,6 @@ using dotnet_rpg.Data;
 using dotnet_rpg.Dtos.User;
 using dotnet_rpg.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_rpg.Controllers
 {
